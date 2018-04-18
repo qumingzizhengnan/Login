@@ -3,6 +3,8 @@ package mg.studio.myapplication;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -112,15 +114,26 @@ public class Login extends AppCompatActivity {
             loginButton.setClickable(false);
 
             //Todo : ensure the user has Internet connection
+            if(isNetworkAvailable(view.getContext())) {
 
-            // Display the progress Dialog
-            progressDialog.setMessage("Logging in ...");
-            if (!progressDialog.isShowing())
-                progressDialog.show();
+                // Display the progress Dialog
+                progressDialog.setMessage("Logging in ...");
+                if (!progressDialog.isShowing())
+                    progressDialog.show();
 
-            //Todo: need to check weather the user has Internet before attempting checking the data
-            // Start fetching the data from the Internet
-            new OnlineCredentialValidation().execute(email,password);
+                //Todo: need to check whether the user has Internet before attempting checking the data
+                // Start fetching the data from the Internet
+                if(NetWorkUtil.isNetworkConnected(getApplication())){
+                    new OnlineCredentialValidation().execute(email,password);
+                }else {
+                    Toast.makeText(this, "this is no network for checking data", Toast.LENGTH_SHORT).show();
+                    Log.d("tag","this is no network for checking data");
+                }
+            }else {
+                loginButton.setClickable(true);
+                Toast.makeText(this, "this is no network for logining in", Toast.LENGTH_SHORT).show();
+                Log.d("tag","this is no network for logining in");
+            }
 
 
         } else {
@@ -131,6 +144,29 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    /*
+    * check the user has Internet connection
+    * */
+    public boolean isNetworkAvailable(Context context){
+        ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivity == null){
+            Log.i("NetworkState","Unavailable");
+            Toast.makeText(Login.this,"Sorry, you don't have Internet connection",Toast.LENGTH_LONG).show();
+            return false;
+        }else {
+            NetworkInfo[] info = connectivity.getAllNetworkInfo();
+            if (info != null){
+                for (int i = 0; i < info.length; i++){
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED){
+                        Log.i("NetworkState","Available");
+                        return true;
+                    }
+                }
+            }
+        }
+        Toast.makeText(Login.this,"Sorry, you don't have Internet connection",Toast.LENGTH_LONG).show();
+        return false;
+    }
 
     /**
      * Press the button register, go to Registration form

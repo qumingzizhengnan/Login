@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mg.studio.myapplication">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -34,6 +35,86 @@
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
+
+        <!--00LifeCycle-->
+        <activity android:name=".demo_00_lifecycle.MainActivity00"/>
+        <activity android:name=".demo_00_lifecycle.Activity"/>
+        <activity android:name=".demo_00_lifecycle.Dialog"/>
+        <!--01UserName-->
+        <activity android:name=".demo_01_username.MainActicity01"/>
+        <activity android:name=".demo_01_username_final.MainActivity01final"/>
+        <!--02Layout-->
+        <activity android:name=".demo_02_layout.MainActivity02"/>
+        <activity android:name=".demo_02_layout.ActivityLinearLayout"/>
+        <activity android:name=".demo_02_layout.ActivityRelativeLayout"/>
+        <activity android:name=".demo_02_layout_final.MainActivity02final"/>
+        <!--03Button-->
+        <activity android:name=".demo_03_button_design.MainActivity03BTDesign"/>
+        <activity android:name=".demo_03_button_toast.MainActivity03BTToast"/>
+        <!--04ButtonIntent-->
+        <activity android:name=".demo_04_button_intent.MainActivity04"/>
+        <!--05StartActivity-->
+        <activity android:name=".demo_05_button_startactivity.MainActivity05"/>
+        <activity android:name=".demo_05_button_startactivity.SecondActivity"/>
+        <activity android:name=".demo_05_button_startactivity_extra.MainActivity05Extra"/>
+        <activity android:name=".demo_05_button_startactivity_extra.SecondActivityExtra"/>
+        <!--06ImageButton-->
+        <activity android:name=".demo_06_imagebutton.MainActivity06"/>
+        <!--07EditText-->
+        <activity android:name=".demo_07_edittext.MainActivity07"/>
+        <!--08RadioButton-->
+        <activity android:name=".demo_08_radiobt_listener.MainActivity08Listener"/>
+        <activity android:name=".demo_08_radiobt_onclick.MainActivity08OnClick"/>
+        <!--09ListView-->
+        <activity android:name=".demo_09_listview.MainActivity09"/>
+        <!--10GetColor-->
+        <activity android:name=".demo_10_getcolor.MainActivity10"/>
+        <!--11GradientBackground-->
+        <activity android:name=".demo_11_gradient_background.MainActivity11"/>
+        <!--12ImplicitIntent-->
+        <activity android:name=".demo_12_implicit_intent.MainActivity12"/>
+        <activity android:name=".demo_12_implicit_intent.MainActivity12Extra"/>
+        <activity android:name=".demo_12_implicit_intent.SecondActivity12"
+            android:launchMode="singleInstance">
+            <intent-filter>
+                <action android:name="mg.studio.intentreceiver.ACTION"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <!--13WeatherAppDesign-->
+        <activity android:name=".demo_13_weather.MainActivity13"/>
+        <!--15ListView-->
+        <activity android:name=".demo_15_listview.MainActivity15"/>
+        <!--16ListViewCustomerAdapter-->
+        <activity android:name=".demo_16_listview_customer_adapter.MainActivity16"/>
+        <!--17AudioRecorder-->
+        <activity android:name=".demo_17_audio_recorder.MainActivity17"/>
+        <!--19Database-->
+        <activity android:name=".demo_19_database.MainActivity19"/>
+        <!--20Fragment-->
+        <activity android:name=".demo_20_fragment.MainActivity20"/>
+        <!--21WebView-->
+        <activity android:name=".demo_21_webview.MainActivity21"/>
+        <!--22ServiceDemo-->
+        <activity android:name=".demo_22_servicedemo.MainActivity22"/>
+        <service android:name=".demo_22_servicedemo.MyService"
+            android:process=":SeparateProcess"/>
+        <!--23Service-->
+        <activity android:name=".demo_23_service.MainActivity23"/>
+        <service android:name=".demo_23_service.MyService"
+            android:process=":newService"
+            android:enabled="true"
+            android:exported="false"  />
+        <!--24Fingerprint-->
+        <activity android:name=".demo_24_fingerprint.MainActivity24"/>
+        <!--25AppPrivateDirector-->
+        <activity android:name=".demo_25_app_private_directory.MainActivity25"/>
+        <!--26AssetsFolder-->
+        <activity android:name=".demo_26_assets.MainActivity26"/>
+        <!--27IntentExtra-->
+        <activity android:name=".demo_27_intent_extras.MainActivity27"/>
+        <activity android:name=".demo_27_intent_extras.NewActivity"/>
+
     </application>
 
 </manifest>
